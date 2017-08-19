@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 mkdir -p stencils
 errors=0
 
