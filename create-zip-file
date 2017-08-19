@@ -1,0 +1,5 @@
+#!/bin/bash
+./xml-to-stencil || exit 1
+rm -f omnigraffle-aws-icons.zip
+cd stencils
+zip -0 -r ../omnigraffle-aws-icons.zip .
