@@ -2,9 +2,9 @@
 mkdir -p xml
 errors=0
 
-for stencil_dir in stencils/*.gstencil; do
+for stencil_dir in "stencils/AWS Simple Icons/"*.gstencil; do
   data_file="$stencil_dir/data.plist"
-  stencil_name="$(echo $stencil_dir | sed -e 's,^stencils/,,' -e 's/\.gstencil$//')"
+  stencil_name="$(echo $stencil_dir | sed -e 's,^stencils/AWS Simple Icons/,,' -e 's/\.gstencil$//')"
 
   if [[ ! -f "$data_file" || ! -r "$data_file" ]]; then
     echo "Stencil data file $data_file does not exist or is not readable" 1>&2;

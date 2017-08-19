@@ -1,10 +1,10 @@
 #!/bin/bash
-mkdir -p stencils
+mkdir -p "stencils/AWS Simple Icons"
 errors=0
 
 for xml_file in xml/*.xml; do
   stencil_name="$(echo "$xml_file" | sed -e 's,^xml/,,' -e 's/\.xml$//')"
-  stencil_dir="stencils/$stencil_name.gstencil"
+  stencil_dir="stencils/AWS Simple Icons/$stencil_name.gstencil"
   data_file="$stencil_dir/data.plist"
 
   mkdir -p "$stencil_dir"
