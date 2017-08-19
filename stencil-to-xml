@@ -1,0 +1,25 @@
+#!/bin/bash
+mkdir -p xml
+errors=0
+
+for stencil_dir in stencils/*.gstencil; do
+  data_file="$stencil_dir/data.plist"
+  stencil_name="$(echo $stencil_dir | sed -e 's,^stencils/,,' -e 's/\.gstencil$//')"
+
+  if [[ ! -f "$data_file" || ! -r "$data_file" ]]; then
+    echo "Stencil data file $data_file does not exist or is not readable" 1>&2;
+    errors=1
+    continue;
+  fi;
+
+  xml_file="xml/$stencil_name.xml"
+
+  if ! gunzip < "$data_file" > "$xml_file"; then
+    echo "Failed to extract stencil file $data_file" 1>&2;
+    errors=1;
+  else
+    echo "Created $xml_file"
+  fi;
+done
+
+exit $errors
