@@ -1,0 +1,20 @@
+#!/bin/bash
+#!/bin/bash
+mkdir -p stencils
+errors=0
+
+for xml_file in xml/*.xml; do
+  stencil_name="$(echo "$xml_file" | sed -e 's,^xml/,,' -e 's/\.xml$//')"
+  stencil_dir="stencils/$stencil_name.gstencil"
+  data_file="$stencil_dir/data.plist"
+
+  mkdir -p "$stencil_dir"
+  if ! gzip < "$xml_file" > "$data_file"; then
+    echo "Failed to create stencil file $data_file" 1>&2;
+    errors=1;
+  else
+    echo "Created $data_file"
+  fi;
+done
+
+exit $errors
